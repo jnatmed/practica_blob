@@ -3,6 +3,6 @@
 return [
     'host' => 'localhost',
     'user' => 'root',
-    'pwd' => 'Y00s4d14',
+    'pwd' => '',
     'db' => 'blob_example',
 ];
