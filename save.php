@@ -3,9 +3,10 @@
 
 $params = require 'config.php';
 
+$dsn = sprintf("mysql:host=%s;dbname=%s", $params['host'], $params['db']);
 try {
-    $dsn = sprintf("mysql:host=%s;dbname=%s", $params['host'], $params['db']);
-    $pdo = new PDO($dsn, $params['user'], 'Y00s4d14');
+    $pdo = new PDO($dsn, $params['user'], $params['pwd']);
+    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 } catch (PDOException $e) {
     echo $e->getMessage();
 } catch (Throwable $e) {
@@ -21,7 +22,7 @@ $sentencia = $pdo->prepare($sql);
 $sentencia->execute([
     ':nombre' => $nombre,
     ':extension' => $extension,
-    ':archivo' => $archivo,
+    ':archivo' => $archivo,     
 ]);
 
 /**
